@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace BBsystem
 {
-    //kooooo
+    
     //by youngo
-    //tmam
+    
     public partial class LogIn : Form
     {
         private readonly User donor;
