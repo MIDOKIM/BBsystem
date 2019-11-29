@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -38,8 +33,8 @@ namespace BBsystem
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
         Point lastPoint;
@@ -59,14 +54,14 @@ namespace BBsystem
             cc();
 
 
-            SqlCommand cmd = new SqlCommand("select subject,recivedate from contactMSG ORDER BY recivedate DESC;", Start.connection);
+            var cmd = new SqlCommand("select subject,recivedate from contactMSG ORDER BY recivedate DESC;", Start.connection);
             try
             {
-                SqlDataAdapter sda = new SqlDataAdapter();
+                var sda = new SqlDataAdapter();
                 sda.SelectCommand = cmd;
                 dbdataset = new DataTable();
                 sda.Fill(dbdataset);
-                BindingSource bsource = new BindingSource();
+                var bsource = new BindingSource();
                 bsource.DataSource = dbdataset;
                 dataGridView1.DataSource = bsource;
                 sda.Update(dbdataset);
@@ -75,15 +70,13 @@ namespace BBsystem
             {
                 MessageBox.Show(ex.Message);
             }
-            SqlCommand c = new SqlCommand("select username,email,registerdate from [user] ORDER BY registerdate DESC;", Start.connection);
+            var c = new SqlCommand("select username,email,registerdate from [user] ORDER BY registerdate DESC;", Start.connection);
             try
             {
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = c;
-                DataTable tb = new DataTable();
+                var da = new SqlDataAdapter {SelectCommand = c};
+                var tb = new DataTable();
                 da.Fill(tb);
-                BindingSource source = new BindingSource();
-                source.DataSource = tb;
+                var source = new BindingSource {DataSource = tb};
                 dataGridView2.DataSource = source;
                 da.Update(tb);
             }
@@ -96,7 +89,7 @@ namespace BBsystem
         private void insert_Click(object sender, EventArgs e)
         {
             
-            if (Start.connection.State == System.Data.ConnectionState.Open)
+            if (Start.connection.State == ConnectionState.Open)
             {
                 if ((txt_FirstName.Text == "") || (txt_LastName.Text == "") || (text_email.Text == "") || (text_username.Text == "") || (text_password.Text == "") || (text_age.Text == "")  || (cbbloodtype.Text == "") || (cbusertype.Text == ""))
                 {
@@ -107,8 +100,8 @@ namespace BBsystem
                 { gender = 1; }
                 else { gender = 2; }
 
-                string q = $"INSERT INTO [User] VALUES ('{txt_FirstName.Text}','{txt_LastName.Text}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{cbbloodtype.Text},{gender},'{text_email.Text}','{text_username.Text}','{text_password.Text}',{cbusertype.Text},GETDATE());";
-                SqlCommand cmd = new SqlCommand(q, Start.connection);
+                var q = $"INSERT INTO [User] VALUES ('{txt_FirstName.Text}','{txt_LastName.Text}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{cbbloodtype.Text},{gender},'{text_email.Text}','{text_username.Text}','{text_password.Text}',{cbusertype.Text},GETDATE());";
+                var cmd = new SqlCommand(q, Start.connection);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("The values has inserted");
             }
@@ -130,8 +123,8 @@ namespace BBsystem
         {
 
             
-            SqlDataAdapter d = new SqlDataAdapter("Select username from [User] where username='" + usertxt.Text + "'", Start.connection);
-            DataTable t = new DataTable();
+            var d = new SqlDataAdapter("Select username from [User] where username='" + usertxt.Text + "'", Start.connection);
+            var t = new DataTable();
             d.Fill(t);
             if (t.Rows.Count == 0)
             {
@@ -141,7 +134,7 @@ namespace BBsystem
             }
             else
             {
-                SqlCommand cmd = Start.connection.CreateCommand();
+                var cmd = Start.connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
                 cmd.CommandText = "delete from [User] where username='" + usertxt.Text + "'";
@@ -168,7 +161,7 @@ namespace BBsystem
         {
 
           
-            SqlCommand cmd = Start.connection.CreateCommand();
+            var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
 
             cmd.CommandText = "update [User] set FirstName='" + Fn.Text + "' ,LastName='" + ln.Text + "',phone='" +phone.Text + "' ,city='" + city.Text + "',age=" + age.Text + ",email='" + mail.Text + "',username='" + usernam.Text + "',password='" + password.Text + "',usertype=" + usertype.Text + " where username='" + usertxt.Text + "'";
@@ -188,9 +181,9 @@ namespace BBsystem
         private void search_Click(object sender, EventArgs e) { 
         
 
-            string sqlselectquery = "select * From [User] where username='" + usertxt.Text.ToString() + "'";
-            SqlDataAdapter d = new SqlDataAdapter("Select username from [User] where username='" + usertxt.Text + "'", Start.connection);
-            DataTable t = new DataTable();
+            var sqlselectquery = "select * From [User] where username='" + usertxt.Text.ToString() + "'";
+            var d = new SqlDataAdapter("Select username from [User] where username='" + usertxt.Text + "'", Start.connection);
+            var t = new DataTable();
             d.Fill(t);
             if (t.Rows.Count == 0)
             {
@@ -199,8 +192,8 @@ namespace BBsystem
             }
             else
             {
-                SqlCommand cmd = new SqlCommand(sqlselectquery, Start.connection);
-                SqlDataReader dr = cmd.ExecuteReader();
+                var cmd = new SqlCommand(sqlselectquery, Start.connection);
+                var dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
 
@@ -236,8 +229,8 @@ namespace BBsystem
         private void button7_Click(object sender, EventArgs e)
         {
          
-            SqlDataAdapter dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
-            DataTable t = new DataTable();
+            var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
+            var t = new DataTable();
             dadapter.Fill(t);
             if (t.Rows.Count == 0)
             {
@@ -247,9 +240,9 @@ namespace BBsystem
             }
             else
             {
-                string sqlselectquery = " SELECT * FROM DonationRequest WHERE requestId=" + int.Parse(Id.Text);
-                SqlCommand cmd = new SqlCommand(sqlselectquery, Start.connection);
-                SqlDataReader dr = cmd.ExecuteReader();
+                var sqlselectquery = " SELECT * FROM DonationRequest WHERE requestId=" + int.Parse(Id.Text);
+                var cmd = new SqlCommand(sqlselectquery, Start.connection);
+                var dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
                     donorid.Text = (dr["donorId"].ToString());
@@ -259,12 +252,12 @@ namespace BBsystem
 
                 }
                 dr.Close();
-                SqlCommand cm = Start.connection.CreateCommand();
+                var cm = Start.connection.CreateCommand();
                 cm.CommandType = CommandType.Text;
                 cm.CommandText = " SELECT * FROM [user] WHERE UserID=" + int.Parse(donorid.Text);
                 cm.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cm);
+                var dt = new DataTable();
+                var da = new SqlDataAdapter(cm);
                 da.Fill(dt);
 
                 foreach (DataRow d in dt.Rows)
@@ -280,7 +273,7 @@ namespace BBsystem
         private void button6_Click(object sender, EventArgs e)
         {
             
-            SqlCommand cmd = Start.connection.CreateCommand();
+            var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "update DonationRequest set completed='" + cbcom.Text + "' WHERE requestId=" + int.Parse(Id.Text);
             cmd.ExecuteNonQuery();
@@ -299,8 +292,8 @@ namespace BBsystem
         private void button5_Click(object sender, EventArgs e)
         {
            
-            SqlDataAdapter dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
-            DataTable t = new DataTable();
+            var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
+            var t = new DataTable();
             dadapter.Fill(t);
             if (t.Rows.Count == 0)
             {
@@ -310,7 +303,7 @@ namespace BBsystem
             }
             else
             {
-                SqlCommand cmd = Start.connection.CreateCommand();
+                var cmd = Start.connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
                 cmd.CommandText = "delete from DonationRequest where requestId=" + int.Parse(Id.Text);
@@ -346,12 +339,12 @@ namespace BBsystem
         {
             cbsearch.Items.Clear();
 
-            SqlCommand cmd = Start.connection.CreateCommand();
+            var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * From contactMSG";
             cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            var da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             foreach (DataRow dr in dt.Rows)
             {
@@ -367,13 +360,13 @@ namespace BBsystem
 
         private void cbsearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlCommand cmd = Start.connection.CreateCommand();
+            var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * From contactMSG where msgID='" +( cbsearch.SelectedIndex+1) + "'";
-            SqlCommand cl = Start.connection.CreateCommand();
+            var cl = Start.connection.CreateCommand();
             cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            var da = new SqlDataAdapter(cmd);
             da.Fill(dt);
 
             foreach (DataRow dr in dt.Rows)
@@ -385,12 +378,12 @@ namespace BBsystem
 
                 cl.CommandType = CommandType.Text;
                 cl.CommandText = "Select* from [User] where email = '" + e1.Text + "'";
-                SqlDataAdapter d = new SqlDataAdapter("Select email from [User] where email='" + e1.Text + "'", Start.connection);
-                DataTable t = new DataTable();
+                var d = new SqlDataAdapter("Select email from [User] where email='" + e1.Text + "'", Start.connection);
+                var t = new DataTable();
                 d.Fill(t);
                 if (t.Rows.Count > 0)
                 {
-                    SqlDataReader readd = cl.ExecuteReader();
+                    var readd = cl.ExecuteReader();
                     if (readd.Read())
                     {
                         u1.Text = (readd["username"].ToString());

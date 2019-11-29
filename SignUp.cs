@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 namespace BBsystem
@@ -62,7 +57,7 @@ namespace BBsystem
             if (!check())
                 return;
             var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
-            int x = radioButton1.Checked ? 1 : 2;
+            var x = radioButton1.Checked ? 1 : 2;
             var command = new SqlCommand($"INSERT INTO [User] VALUES('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{comboBox2.Text}','{textBox4.Text}','{BloodType}',{x},'{textBox6.Text}','{textBox7.Text}','{textBox8.Text}',1,GETDATE());", Start.connection);
             command.ExecuteNonQuery();
             MessageBox.Show("Email Created Successfully");
@@ -73,7 +68,7 @@ namespace BBsystem
 
         private bool check()
         {
-            Regex name = new Regex("[a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$");
+            var name = new Regex("[a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$");
             if (name.IsMatch(textBox1.Text)==false)
             {
                 MessageBox.Show("Your First Name Is Invalid");
@@ -86,9 +81,9 @@ namespace BBsystem
                 textBox2.Focus();
                 return false;
             }
-            string query = "select count(*)from [user] where phone='" + textBox3.Text + "'";
-            SqlCommand command = new SqlCommand(query, Start.connection);
-            Regex phone = new Regex("^(01)[0-9]{9}$");
+            var query = "select count(*)from [user] where phone='" + textBox3.Text + "'";
+            var command = new SqlCommand(query, Start.connection);
+            var phone = new Regex("^(01)[0-9]{9}$");
             if (phone.IsMatch(textBox3.Text) == false)
             {
                 MessageBox.Show("Mobile Number Is Invalid");
@@ -103,7 +98,7 @@ namespace BBsystem
             }
             query = "select count(*)from [user] where email='" + textBox6.Text + "'";
              command = new SqlCommand(query, Start.connection);
-            Regex email = new Regex(@"^[a-zA-Z][\w\.-]{2,28}[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
+            var email = new Regex(@"^[a-zA-Z][\w\.-]{2,28}[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
             if (email.IsMatch(textBox6.Text) == false)
             {
                 MessageBox.Show("Email Is Incorrect");
@@ -130,7 +125,7 @@ namespace BBsystem
                 textBox7.Focus();
                 return false;
             }
-            Regex password = new Regex(@"(?=^.{8,12}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.");
+            var password = new Regex(@"(?=^.{8,12}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.");
             if (password.IsMatch(textBox8.Text) == false)
             {
                 MessageBox.Show("Use A Powerful Password(UpperCase,LowerCase And Numbers)");
@@ -168,7 +163,7 @@ namespace BBsystem
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox1.Items.IndexOf(comboBox1.SelectedItem);
+            var index = comboBox1.Items.IndexOf(comboBox1.SelectedItem);
             switch (index)
             {
                 case 0:
@@ -204,7 +199,7 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            ToolTip TP = new ToolTip();
+            var TP = new ToolTip();
             TP.ShowAlways = true;
             TP.SetToolTip(textBox3, "01*********");
             TP.SetToolTip(textBox6, "yourname@mail.com");

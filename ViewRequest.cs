@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BBsystem
@@ -25,9 +20,9 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            SqlCommand command = new SqlCommand("select * from DonationRequest where donorid=" + donor.userid, Start.connection);
-            SqlDataAdapter reader = new SqlDataAdapter(command);
-            DataTable filldata = new DataTable();
+            var command = new SqlCommand("select * from DonationRequest where donorid=" + donor.userid, Start.connection);
+            var reader = new SqlDataAdapter(command);
+            var filldata = new DataTable();
             reader.Fill(filldata);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = filldata;
@@ -64,7 +59,7 @@ namespace BBsystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM DonationRequest where donorid = " + donor.userid + " AND completed=0", Start.connection);
+            var command = new SqlCommand("SELECT * FROM DonationRequest where donorid = " + donor.userid + " AND completed=0", Start.connection);
             if (command.ExecuteScalar() != null)
             {
                 MessageBox.Show("You Already Have A Pending Donate Request");

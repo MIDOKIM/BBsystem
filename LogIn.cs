@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BBsystem
@@ -14,7 +9,7 @@ namespace BBsystem
     //kooooo
     public partial class LogIn : Form
     {
-        public User donor;
+        private readonly User donor;
         public LogIn() { 
             InitializeComponent();
             donor = new User();
@@ -70,52 +65,48 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            string query = "select count(*)from [user] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
-            SqlCommand command = new SqlCommand(query, Start.connection);
-            SqlDataReader reader;
-            int x = Convert.ToInt32(command.ExecuteScalar());
+            var query = "select count(*)from [user] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
+            var command = new SqlCommand(query, Start.connection);
+            var x = Convert.ToInt32(command.ExecuteScalar());
             if (x == 0) { 
                 MessageBox.Show("wrong email or password");
                 textBox1.Focus();
                 return;
             }
-            else
+
+            query = "select * from [User] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
+            command = new SqlCommand(query, Start.connection);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                query = "select * from [User] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
-                command = new SqlCommand(query, Start.connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    donor.username = textBox1.Text;
-                    donor.password = textBox2.Text;
-                    donor.email= reader["email"].ToString();
-                    donor.fName = reader["FirstName"].ToString();
-                    donor.lName = reader["LastName"].ToString();
-                    donor.usertype = (int)reader["usertype"];
-                    donor.userid= (int)reader["userID"];
-                    donor.bloodtype = (byte) reader["BloodType"];
-                    donor.phone= reader["phone"].ToString();
-                    donor.city= reader["city"].ToString();
-                    donor.gender = Convert.ToChar(reader["gender"]);
-                    donor.age = (int)reader["age"];
-
-                }
-                reader.Close();
-                if(donor.userid!=3)
-                    MessageBox.Show("welcome Back "+donor.fName);
-                else
-                    MessageBox.Show("welcome Back Admin");
-
-
-                home form5 = new home(donor);
-                form5.Tag = this;
-                textBox1.Text = null;
-                textBox2.Text = null;
-                textBox1.Focus();
-                form5.Show(this);
-                Hide();
+                donor.username = textBox1.Text;
+                donor.password = textBox2.Text;
+                donor.email= reader["email"].ToString();
+                donor.fName = reader["FirstName"].ToString();
+                donor.lName = reader["LastName"].ToString();
+                donor.usertype = (int)reader["usertype"];
+                donor.userid= (int)reader["userID"];
+                donor.bloodtype = (byte) reader["BloodType"];
+                donor.phone= reader["phone"].ToString();
+                donor.city= reader["city"].ToString();
+                donor.gender = Convert.ToChar(reader["gender"]);
+                donor.age = (int)reader["age"];
 
             }
+            reader.Close();
+            if(donor.userid!=3)
+                MessageBox.Show("welcome Back "+donor.fName);
+            else
+                MessageBox.Show("welcome Back Admin");
+
+
+            var form5 = new home(donor);
+            form5.Tag = this;
+            textBox1.Text = null;
+            textBox2.Text = null;
+            textBox1.Focus();
+            form5.Show(this);
+            Hide();
             /*  else {
 
                   MessageBox.Show("welcome");

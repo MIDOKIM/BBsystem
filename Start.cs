@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -25,7 +20,7 @@ namespace BBsystem
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SignUp form6 = new SignUp();
+            var form6 = new SignUp();
             form6.Tag = this;
             form6.Show(this);
             Hide();
@@ -61,7 +56,7 @@ namespace BBsystem
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            ContactUs form2 = new ContactUs();
+            var form2 = new ContactUs();
             form2.Tag = this;
             form2.Show(this);
             Hide();
@@ -69,7 +64,7 @@ namespace BBsystem
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            About form3 = new About();
+            var form3 = new About();
             form3.Tag = this;
             form3.Show(this);
             Hide();
@@ -77,7 +72,7 @@ namespace BBsystem
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            LogIn form7 = new LogIn();
+            var form7 = new LogIn();
             form7.Tag = this;
             form7.Show(this);
             Hide();
@@ -85,7 +80,7 @@ namespace BBsystem
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            SignUp form6 = new SignUp();
+            var form6 = new SignUp();
             form6.Tag = this;
             form6.Show(this);
             Hide();
