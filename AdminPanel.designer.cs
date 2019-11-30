@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPanel));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -64,6 +65,8 @@
             this.search = new System.Windows.Forms.Button();
             this.usertxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bdtype = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.usertype = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.remove = new System.Windows.Forms.Button();
@@ -114,8 +117,8 @@
             this.cbsearch = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label29 = new System.Windows.Forms.Label();
-            this.bdtype = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
+            this.cbgndr = new System.Windows.Forms.ComboBox();
+            this.gndr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -227,9 +230,11 @@
             this.Add.Location = new System.Drawing.Point(4, 22);
             this.Add.Name = "Add";
             this.Add.Padding = new System.Windows.Forms.Padding(3);
-            this.Add.Size = new System.Drawing.Size(634, 365);
+            this.Add.Size = new System.Drawing.Size(718, 354);
             this.Add.TabIndex = 0;
             this.Add.Text = "Add";
+            this.Add.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseDown);
+            this.Add.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseMove);
             // 
             // cbusertype
             // 
@@ -504,6 +509,8 @@
             this.Edit.TabIndex = 1;
             this.Edit.Text = "Edit";
             this.Edit.Click += new System.EventHandler(this.Edit_Click);
+            this.Edit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseDown);
+            this.Edit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseMove);
             // 
             // dataGridView2
             // 
@@ -540,11 +547,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbgndr);
+            this.panel1.Controls.Add(this.gndr);
+            this.panel1.Controls.Add(this.remove);
             this.panel1.Controls.Add(this.bdtype);
             this.panel1.Controls.Add(this.label30);
             this.panel1.Controls.Add(this.usertype);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.remove);
             this.panel1.Controls.Add(this.update);
             this.panel1.Controls.Add(this.city);
             this.panel1.Controls.Add(this.label14);
@@ -568,6 +577,34 @@
             this.panel1.Size = new System.Drawing.Size(295, 302);
             this.panel1.TabIndex = 77;
             // 
+            // bdtype
+            // 
+            this.bdtype.FormattingEnabled = true;
+            this.bdtype.Items.AddRange(new object[] {
+            "A+",
+            "A-",
+            "B+",
+            "B-",
+            "O+",
+            "O-",
+            "AB+",
+            "AB-"});
+            this.bdtype.Location = new System.Drawing.Point(114, 239);
+            this.bdtype.Margin = new System.Windows.Forms.Padding(2);
+            this.bdtype.Name = "bdtype";
+            this.bdtype.Size = new System.Drawing.Size(92, 21);
+            this.bdtype.TabIndex = 74;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(41, 239);
+            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(59, 13);
+            this.label30.TabIndex = 73;
+            this.label30.Text = "blood type:";
+            // 
             // usertype
             // 
             this.usertype.FormattingEnabled = true;
@@ -575,7 +612,7 @@
             "User",
             "Hospital",
             "Admin"});
-            this.usertype.Location = new System.Drawing.Point(114, 209);
+            this.usertype.Location = new System.Drawing.Point(113, 214);
             this.usertype.Margin = new System.Windows.Forms.Padding(2);
             this.usertype.Name = "usertype";
             this.usertype.Size = new System.Drawing.Size(92, 21);
@@ -584,7 +621,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(45, 209);
+            this.label13.Location = new System.Drawing.Point(41, 214);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(55, 13);
@@ -593,10 +630,10 @@
             // 
             // remove
             // 
-            this.remove.Location = new System.Drawing.Point(169, 259);
+            this.remove.Location = new System.Drawing.Point(216, 264);
             this.remove.Margin = new System.Windows.Forms.Padding(2);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(64, 19);
+            this.remove.Size = new System.Drawing.Size(64, 24);
             this.remove.TabIndex = 72;
             this.remove.Text = "remove";
             this.remove.UseVisualStyleBackColor = true;
@@ -604,10 +641,10 @@
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(99, 259);
+            this.update.Location = new System.Drawing.Point(156, 264);
             this.update.Margin = new System.Windows.Forms.Padding(2);
             this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(56, 19);
+            this.update.Size = new System.Drawing.Size(56, 24);
             this.update.TabIndex = 0;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = true;
@@ -629,7 +666,7 @@
             "Giza",
             "Ismailia",
             "Minya"});
-            this.city.Location = new System.Drawing.Point(114, 184);
+            this.city.Location = new System.Drawing.Point(114, 189);
             this.city.Margin = new System.Windows.Forms.Padding(2);
             this.city.Name = "city";
             this.city.Size = new System.Drawing.Size(92, 21);
@@ -638,7 +675,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(63, 184);
+            this.label14.Location = new System.Drawing.Point(59, 189);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(26, 13);
@@ -647,7 +684,7 @@
             // 
             // age
             // 
-            this.age.Location = new System.Drawing.Point(116, 158);
+            this.age.Location = new System.Drawing.Point(113, 165);
             this.age.Margin = new System.Windows.Forms.Padding(2);
             this.age.Name = "age";
             this.age.Size = new System.Drawing.Size(39, 20);
@@ -656,7 +693,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(49, 136);
+            this.label15.Location = new System.Drawing.Point(45, 141);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(55, 13);
@@ -665,7 +702,7 @@
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(117, 136);
+            this.password.Location = new System.Drawing.Point(113, 141);
             this.password.Margin = new System.Windows.Forms.Padding(2);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(98, 20);
@@ -674,7 +711,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(63, 158);
+            this.label16.Location = new System.Drawing.Point(59, 163);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(28, 13);
@@ -683,7 +720,7 @@
             // 
             // usernam
             // 
-            this.usernam.Location = new System.Drawing.Point(117, 113);
+            this.usernam.Location = new System.Drawing.Point(113, 118);
             this.usernam.Margin = new System.Windows.Forms.Padding(2);
             this.usernam.Name = "usernam";
             this.usernam.Size = new System.Drawing.Size(98, 20);
@@ -692,7 +729,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(46, 113);
+            this.label17.Location = new System.Drawing.Point(42, 118);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
@@ -701,7 +738,7 @@
             // 
             // phone
             // 
-            this.phone.Location = new System.Drawing.Point(117, 68);
+            this.phone.Location = new System.Drawing.Point(113, 73);
             this.phone.Margin = new System.Windows.Forms.Padding(2);
             this.phone.Name = "phone";
             this.phone.Size = new System.Drawing.Size(98, 20);
@@ -710,7 +747,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(53, 72);
+            this.label18.Location = new System.Drawing.Point(49, 77);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(40, 13);
@@ -719,7 +756,7 @@
             // 
             // mail
             // 
-            this.mail.Location = new System.Drawing.Point(117, 91);
+            this.mail.Location = new System.Drawing.Point(113, 96);
             this.mail.Margin = new System.Windows.Forms.Padding(2);
             this.mail.Name = "mail";
             this.mail.Size = new System.Drawing.Size(152, 20);
@@ -728,7 +765,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(53, 93);
+            this.label19.Location = new System.Drawing.Point(49, 98);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(38, 13);
@@ -737,7 +774,7 @@
             // 
             // ln
             // 
-            this.ln.Location = new System.Drawing.Point(117, 45);
+            this.ln.Location = new System.Drawing.Point(113, 50);
             this.ln.Margin = new System.Windows.Forms.Padding(2);
             this.ln.Name = "ln";
             this.ln.Size = new System.Drawing.Size(98, 20);
@@ -746,7 +783,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(45, 45);
+            this.label20.Location = new System.Drawing.Point(41, 50);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(58, 13);
@@ -755,7 +792,7 @@
             // 
             // Fn
             // 
-            this.Fn.Location = new System.Drawing.Point(118, 21);
+            this.Fn.Location = new System.Drawing.Point(114, 26);
             this.Fn.Margin = new System.Windows.Forms.Padding(2);
             this.Fn.Name = "Fn";
             this.Fn.Size = new System.Drawing.Size(98, 20);
@@ -764,7 +801,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(46, 20);
+            this.label21.Location = new System.Drawing.Point(42, 25);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(57, 13);
@@ -802,9 +839,11 @@
             this.View.Controls.Add(this.label27);
             this.View.Location = new System.Drawing.Point(4, 22);
             this.View.Name = "View";
-            this.View.Size = new System.Drawing.Size(634, 365);
+            this.View.Size = new System.Drawing.Size(718, 354);
             this.View.TabIndex = 2;
             this.View.Text = "View";
+            this.View.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseDown);
+            this.View.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseMove);
             // 
             // complete
             // 
@@ -990,6 +1029,8 @@
             this.Contact.TabIndex = 3;
             this.Contact.Text = "Contact";
             this.Contact.Click += new System.EventHandler(this.Contact_Click);
+            this.Contact.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseDown);
+            this.Contact.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminPanel_MouseMove);
             // 
             // f1
             // 
@@ -1101,33 +1142,27 @@
             this.label29.TabIndex = 112;
             this.label29.Text = "Choose Sybject Name";
             // 
-            // bdtype
+            // cbgndr
             // 
-            this.bdtype.FormattingEnabled = true;
-            this.bdtype.Items.AddRange(new object[] {
-            "A+",
-            "A-",
-            "B+",
-            "B-",
-            "O+",
-            "O-",
-            "AB+",
-            "AB-"});
-            this.bdtype.Location = new System.Drawing.Point(114, 234);
-            this.bdtype.Margin = new System.Windows.Forms.Padding(2);
-            this.bdtype.Name = "bdtype";
-            this.bdtype.Size = new System.Drawing.Size(92, 21);
-            this.bdtype.TabIndex = 74;
+            this.cbgndr.FormattingEnabled = true;
+            this.cbgndr.Items.AddRange(new object[] {
+            "m",
+            "f"});
+            this.cbgndr.Location = new System.Drawing.Point(114, 264);
+            this.cbgndr.Margin = new System.Windows.Forms.Padding(2);
+            this.cbgndr.Name = "cbgndr";
+            this.cbgndr.Size = new System.Drawing.Size(38, 21);
+            this.cbgndr.TabIndex = 76;
             // 
-            // label30
+            // gndr
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(45, 234);
-            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(59, 13);
-            this.label30.TabIndex = 73;
-            this.label30.Text = "blood type:";
+            this.gndr.AutoSize = true;
+            this.gndr.Location = new System.Drawing.Point(41, 264);
+            this.gndr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.gndr.Name = "gndr";
+            this.gndr.Size = new System.Drawing.Size(43, 13);
+            this.gndr.TabIndex = 75;
+            this.gndr.Text = "gender:";
             // 
             // AdminPanel
             // 
@@ -1140,6 +1175,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AdminPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1259,6 +1295,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox bdtype;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox cbgndr;
+        private System.Windows.Forms.Label gndr;
     }
 }
 

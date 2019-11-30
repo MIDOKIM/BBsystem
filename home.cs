@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -55,6 +56,22 @@ namespace BBsystem
                     pictureBox2.Image = Properties.Resources.abn;
                     break;
             }
+            SqlCommand load = new SqlCommand("select count(*) from DonationRequest where bloodtype=0 and completed=1", Start.connection);
+            label5.Text = Convert.ToString(load.ExecuteScalar());
+             load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=1 and completed =1", Start.connection);
+            label6.Text = Convert.ToString(load.ExecuteScalar());
+             load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=2 and completed =1", Start.connection);
+            label7.Text = Convert.ToString(load.ExecuteScalar());
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=3 and completed =1", Start.connection);
+            label8.Text = Convert.ToString(load.ExecuteScalar());
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=4 and completed =1", Start.connection);
+            label9.Text = Convert.ToString(load.ExecuteScalar());
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=5 and completed =1", Start.connection);
+            label10.Text = Convert.ToString(load.ExecuteScalar());
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=6 and completed =1", Start.connection);
+            label11.Text = Convert.ToString(load.ExecuteScalar());
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=7 and completed =1", Start.connection);
+            label12.Text = Convert.ToString(load.ExecuteScalar());
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -121,5 +138,6 @@ namespace BBsystem
             this.StartForm(new ViewDonations(donor));
 
         }
+
     }
 }

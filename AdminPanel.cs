@@ -109,8 +109,7 @@ namespace BBsystem
                 var gender = rbmale.Checked ? 'm' : 'f';
                 var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), cbbloodtype.Text.Replace("+", "Positive").Replace("-", "Negative")));
                 var UserType = Convert.ToInt32(Enum.Parse(typeof(authority), cbusertype.Text)) ;
-
-                var q = $"INSERT INTO [User] VALUES ('{txt_FirstName.Text}','{txt_LastName.Text}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{BloodType},'{gender}','{text_email.Text}','{text_username.Text}','{text_password.Text}',{UserType},GETDATE());";
+                var q = $"INSERT INTO [User] VALUES ('{ char.ToUpper(txt_FirstName.Text[0]) + txt_FirstName.Text.Substring(1)}','{ char.ToUpper(txt_LastName.Text[0]) + txt_LastName.Text.Substring(1)}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{BloodType},'{gender}','{text_email.Text}','{text_username.Text}','{text_password.Text}',{UserType},GETDATE());";
                 var cmd = new SqlCommand(q, Start.connection);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("The values has inserted");
@@ -132,8 +131,10 @@ namespace BBsystem
 
         private void remove_Click(object sender, EventArgs e)
         {
+            DialogResult remove = MessageBox.Show("Remove user account ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (remove == DialogResult.No)
+                return;
 
-            
             var d = new SqlDataAdapter("Select username from [User] where username='" + usertxt.Text + "'", Start.connection);
             var t = new DataTable();
             d.Fill(t);
@@ -158,7 +159,7 @@ namespace BBsystem
                 age.Text = "";
                 city.Text = "";
                 usertxt.Text = "";
-                usertype.Text = "";
+                bdtype.Text = "";
 
                 MessageBox.Show("record is deleted successfully!");
             }
@@ -166,13 +167,26 @@ namespace BBsystem
 
         private void update_Click(object sender, EventArgs e)
         {
+            DialogResult update = MessageBox.Show("Update user info ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (update == DialogResult.No)
+                return;
+            if ((Fn.Text == "") || (ln.Text == "") || (mail.Text == "") || (usernam.Text == "") || (password.Text == "") || (age.Text == "") || (bdtype.Text=="" ) || (usertype.Text=="")||(phone.Text=="")||city.Text=="")
+            {
+                MessageBox.Show("Please enter all the information required!");
+                return;
+            }
+            if (cbgndr.Text != "m" && cbgndr.Text !="f")
+            {
+                MessageBox.Show("choose correct gender");
 
-          
+                return;
+            }
             var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), bdtype.Text.Replace("+", "Positive").Replace("-", "Negative")));
             var UserType = Convert.ToInt32(Enum.Parse(typeof(authority), usertype.Text)) ;
-            cmd.CommandText = "update [User] set FirstName='" + Fn.Text + "' ,LastName='" + ln.Text + "',phone='" +phone.Text + "' ,city='" + city.Text + "',age=" + age.Text + ",email='" + mail.Text + "',username='" + usernam.Text + "',password='" + password.Text + "',usertype=" + UserType + ",BloodType="+BloodType+" where username='" + usertxt.Text + "'";
+
+            cmd.CommandText = "update [User] set gender= '"+cbgndr.Text+"',FirstName='" +   char.ToUpper(Fn.Text[0]) + Fn.Text.Substring(1)+ "' ,LastName='" + char.ToUpper(ln.Text[0]) + ln.Text.Substring(1)+ "',phone='" +phone.Text + "' ,city='" + city.Text + "',age=" + age.Text + ",email='" + mail.Text + "',username='" + usernam.Text + "',password='" + password.Text + "',usertype=" + UserType + ",BloodType="+BloodType+" where username='" + usertxt.Text + "'";
             cmd.ExecuteNonQuery();
             Fn.Text = "";
             ln.Text = "";
@@ -183,6 +197,8 @@ namespace BBsystem
             age.Text = "";
             city.Text = "";
             usertype.Text = "";
+            bdtype.Text = "";
+            cbgndr.Text = "";
             MessageBox.Show("record is updated successfully!");
         }
 
@@ -213,9 +229,11 @@ namespace BBsystem
                     password.Text = dr["password"].ToString();
                     age.Text = dr["age"].ToString();
                     city.Text = dr["city"].ToString();
-                    usertype.Text = dr["usertype"].ToString();
+                    usertype.Text = Helper.GetUsertypeString(dr["usertype"].ToString());
                     bdtype.Text = Helper.GetBloodtypeString(dr["BloodType"].ToString());
+                    cbgndr.Text = dr["gender"].ToString();
 
+                   
 
                     dr.Close();
                 }
@@ -234,11 +252,16 @@ namespace BBsystem
             age.Text = "";
             city.Text = "";
             usertype.Text = "";
+            bdtype.Text = "";
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-         
+
+            if (Id.Text == "")
+            {    MessageBox.Show("Enter Valid Request ID");
+            return; 
+            }
             var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
             var t = new DataTable();
             dadapter.Fill(t);
@@ -282,7 +305,9 @@ namespace BBsystem
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+            DialogResult donaterequest = MessageBox.Show("Update donate request info ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (donaterequest == DialogResult.No)
+                return;
             var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "update DonationRequest set completed='" + cbcom.Text + "' WHERE requestId=" + int.Parse(Id.Text);
@@ -290,6 +315,10 @@ namespace BBsystem
             if (cbcom.SelectedItem.ToString() == "1")
             {
                 cmd.CommandText = "update DonationRequest  set donatedate=GETDATE() WHERE requestId=" + int.Parse(Id.Text);
+            }
+            else if (cbcom.SelectedItem.ToString() == "0")
+            {
+                cmd.CommandText = "update DonationRequest  set donatedate=NULL WHERE requestId=" + int.Parse(Id.Text);
             }
 
             cmd.ExecuteNonQuery();
@@ -301,7 +330,9 @@ namespace BBsystem
 
         private void button5_Click(object sender, EventArgs e)
         {
-           
+            DialogResult donaterequest = MessageBox.Show("Remove donate request ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (donaterequest == DialogResult.No)
+                return;
             var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
             var t = new DataTable();
             dadapter.Fill(t);

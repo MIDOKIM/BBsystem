@@ -26,10 +26,13 @@ namespace BBsystem
         }
         private void LoadAll()
         {
-            var command = $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID ";
+            string command=null;
             if (donor.usertype == 2)
-                command += " WHERE completed=1";
-            command += " order by donatedate asc";
+                 command = $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID  WHERE completed=1 order by donatedate desc";
+
+            else if(donor.usertype==3)
+                 command = $"SELECT D.requestID, B.BloodName,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID  order by donatedate desc";
+
             using (var cmd = new SqlCommand(command, Start.connection))
             {
                 var adapter = new SqlDataAdapter(cmd);
@@ -75,11 +78,13 @@ namespace BBsystem
             if (comboBox1.SelectedIndex == -1)
                 return;
             var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
-            var command =
-                   $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID WHERE D.bloodtype = {BloodType}";
+            string command = null;
+            if (donor.usertype == 3)
+
+               command= $"SELECT D.requestID,B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID WHERE D.bloodtype = {BloodType} order by donatedate desc";
             if (donor.usertype == 2)
-                command += " AND completed=1";
-            command += " order by donatedate asc";
+                command = $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID WHERE D.bloodtype = {BloodType}  AND completed=1 order by donatedate desc";
+
             using (var cmd = new SqlCommand(command, Start.connection))
             {
                 var adapter = new SqlDataAdapter(cmd);

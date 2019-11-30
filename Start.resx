@@ -157,7 +157,7 @@
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe Print, 36pt, style=Bold</value>
+    <value>Segoe Print, 36pt, style=Bold, Italic</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -964,9 +964,6 @@
         mkkcZwQIGUXRaJI4ziCKRg8DwACKxfZrdXV7AON94LqpaHd3bvFTT1n6ggWVHoYQAfF/AVlLsc1pjbcd
         AAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

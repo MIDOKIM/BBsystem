@@ -20,7 +20,7 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            var command = new SqlCommand("select * from DonationRequest where donorid=" + donor.userid, Start.connection);
+            var command = new SqlCommand("select requestID,donorId,bloodtype,requestdate,donatedate from DonationRequest where donorid=" + donor.userid+" order by donatedate desc", Start.connection);
             var reader = new SqlDataAdapter(command);
             var filldata = new DataTable();
             reader.Fill(filldata);

@@ -57,11 +57,9 @@ namespace BBsystem
                 return;
             var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
             var x = radioButton1.Checked ? 'm' : 'f';
-            var command = new SqlCommand($"INSERT INTO [User] VALUES('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{comboBox2.Text}','{textBox4.Text}','{BloodType}','{x}','{textBox6.Text}','{textBox7.Text}','{textBox8.Text}',1,GETDATE());", Start.connection);
+            var command = new SqlCommand($"INSERT INTO [User] VALUES('{ char.ToUpper(textBox1.Text[0]) + textBox1.Text.Substring(1)}','{char.ToUpper(textBox2.Text[0]) + textBox2.Text.Substring(1)}','{textBox3.Text}','{comboBox2.Text}','{textBox4.Text}','{BloodType}','{x}','{textBox6.Text}','{textBox7.Text}','{textBox8.Text}',1,GETDATE());", Start.connection);
             command.ExecuteNonQuery();
             MessageBox.Show("Email Created Successfully");
-            var start = (Start)Tag;
-            start.Show();
             Close();
         }
 
@@ -205,6 +203,7 @@ namespace BBsystem
             TP.SetToolTip(textBox7, "Choose a unique username");
             TP.SetToolTip(textBox8, "Password must be at least 8 letters ,contains Upper and lower Case and numbers");
         }
+
     }
 }
 

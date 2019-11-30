@@ -63,7 +63,7 @@ namespace BBsystem
             var query = "select count(*)from [user] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
             var command = new SqlCommand(query, Start.connection);
             var x = Convert.ToInt32(command.ExecuteScalar());
-            if (x == 0) { 
+            if (x == 0) {
                 MessageBox.Show("wrong email or password");
                 textBox1.Focus();
                 return;
@@ -89,10 +89,11 @@ namespace BBsystem
 
             }
             reader.Close();
-            if(donor.userid!=3)
+            if(donor.usertype!=3)
                 MessageBox.Show("welcome Back "+donor.fName);
             else
                 MessageBox.Show("welcome Back Admin");
+            donor.fName = char.ToUpper(donor.fName[0]) + donor.fName.Substring(1);
 
 
             var form5 = new home(donor);

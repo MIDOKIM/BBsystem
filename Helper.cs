@@ -27,5 +27,10 @@ namespace BBsystem
         {
             return Enum.Parse(typeof(bloodtype), value).ToString().Replace("Positive", "+").Replace("Negative", "-");
         }
+
+        public static string GetUsertypeString(string value)
+        {
+            return Enum.Parse(typeof(authority), value).ToString();
+        }
     }
 }
