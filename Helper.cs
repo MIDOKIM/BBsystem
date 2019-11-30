@@ -14,6 +14,7 @@ namespace BBsystem
             mainForm.Visible = false;
             if (Startform.ShowDialog() == DialogResult.Abort)
             {
+                mainForm.DialogResult = DialogResult.Abort;
                 Startform.Dispose();
                 Application.Exit();
                 return;
