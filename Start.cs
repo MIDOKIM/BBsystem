@@ -10,7 +10,7 @@ namespace BBsystem
 {
     public partial class Start : Form
     {
-        private const string ConString = @"Data Source=MIDOKIM-PC\MKK;Initial Catalog=BloodBankDB;Integrated Security=True";
+        private const string ConString = @"Data Source=.;Initial Catalog=BloodBankDB;Integrated Security=True";
         public static SqlConnection connection;
         public Start()
         {

@@ -214,7 +214,7 @@ namespace BBsystem
                     age.Text = dr["age"].ToString();
                     city.Text = dr["city"].ToString();
                     usertype.Text = dr["usertype"].ToString();
-                    bdtype.Text = dr["BloodType"].ToString();
+                    bdtype.Text = Helper.GetBloodtypeString(dr["BloodType"].ToString());
 
 
                     dr.Close();

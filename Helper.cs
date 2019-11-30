@@ -22,5 +22,10 @@ namespace BBsystem
 
             mainForm.Visible = true;
         }
+
+        public static string GetBloodtypeString(string value)
+        {
+            return Enum.Parse(typeof(bloodtype), value).ToString().Replace("Positive", "+").Replace("Negative", "-");
+        }
     }
 }
