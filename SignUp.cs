@@ -56,8 +56,8 @@ namespace BBsystem
             if (!check())
                 return;
             var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
-            var x = radioButton1.Checked ? 1 : 2;
-            var command = new SqlCommand($"INSERT INTO [User] VALUES('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{comboBox2.Text}','{textBox4.Text}','{BloodType}',{x},'{textBox6.Text}','{textBox7.Text}','{textBox8.Text}',1,GETDATE());", Start.connection);
+            var x = radioButton1.Checked ? 'm' : 'f';
+            var command = new SqlCommand($"INSERT INTO [User] VALUES('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{comboBox2.Text}','{textBox4.Text}','{BloodType}','{x}','{textBox6.Text}','{textBox7.Text}','{textBox8.Text}',1,GETDATE());", Start.connection);
             command.ExecuteNonQuery();
             MessageBox.Show("Email Created Successfully");
             var start = (Start)Tag;

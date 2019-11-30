@@ -6,6 +6,12 @@ using System.Data.SqlClient;
 
 namespace BBsystem
 {
+    enum authority
+    {
+        User =1,
+        Hospital,
+        Admin
+    }
     public partial class AdminPanel : Form
     {
         DataTable dbdataset;
@@ -93,13 +99,18 @@ namespace BBsystem
                 if ((txt_FirstName.Text == "") || (txt_LastName.Text == "") || (text_email.Text == "") || (text_username.Text == "") || (text_password.Text == "") || (text_age.Text == "")  || (cbbloodtype.Text == "") || (cbusertype.Text == ""))
                 {
                     MessageBox.Show("Please enter all the information required!");
+                    return;
                 }
-                int gender;
-                if (rbfemale.Checked)
-                { gender = 1; }
-                else { gender = 2; }
+                if (!rbmale.Checked && !rbfemale.Checked)
+                {
+                    MessageBox.Show("Please choose gender");
+                    return;
+                }
+                var gender = rbmale.Checked ? 'm' : 'f';
+                var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), cbbloodtype.Text.Replace("+", "Positive").Replace("-", "Negative")));
+                var UserType = Convert.ToInt32(Enum.Parse(typeof(authority), cbusertype.Text)) ;
 
-                var q = $"INSERT INTO [User] VALUES ('{txt_FirstName.Text}','{txt_LastName.Text}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{cbbloodtype.Text},{gender},'{text_email.Text}','{text_username.Text}','{text_password.Text}',{cbusertype.Text},GETDATE());";
+                var q = $"INSERT INTO [User] VALUES ('{txt_FirstName.Text}','{txt_LastName.Text}','{text_phone.Text}','{cbcity.Text}',{text_age.Text},{BloodType},'{gender}','{text_email.Text}','{text_username.Text}','{text_password.Text}',{UserType},GETDATE());";
                 var cmd = new SqlCommand(q, Start.connection);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("The values has inserted");
@@ -116,6 +127,7 @@ namespace BBsystem
             cbcity.Text = "";
             cbbloodtype.Text = "";
             cbusertype.Text = "";
+            gbgender.Text = "";
         }
 
         private void remove_Click(object sender, EventArgs e)
@@ -128,8 +140,6 @@ namespace BBsystem
             if (t.Rows.Count == 0)
             {
                 MessageBox.Show("please enter a valid username!");
-
-
             }
             else
             {
@@ -150,8 +160,6 @@ namespace BBsystem
                 usertxt.Text = "";
                 usertype.Text = "";
 
-
-
                 MessageBox.Show("record is deleted successfully!");
             }
         }
@@ -162,8 +170,9 @@ namespace BBsystem
           
             var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-
-            cmd.CommandText = "update [User] set FirstName='" + Fn.Text + "' ,LastName='" + ln.Text + "',phone='" +phone.Text + "' ,city='" + city.Text + "',age=" + age.Text + ",email='" + mail.Text + "',username='" + usernam.Text + "',password='" + password.Text + "',usertype=" + usertype.Text + " where username='" + usertxt.Text + "'";
+            var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), bdtype.Text.Replace("+", "Positive").Replace("-", "Negative")));
+            var UserType = Convert.ToInt32(Enum.Parse(typeof(authority), usertype.Text)) ;
+            cmd.CommandText = "update [User] set FirstName='" + Fn.Text + "' ,LastName='" + ln.Text + "',phone='" +phone.Text + "' ,city='" + city.Text + "',age=" + age.Text + ",email='" + mail.Text + "',username='" + usernam.Text + "',password='" + password.Text + "',usertype=" + UserType + ",BloodType="+BloodType+" where username='" + usertxt.Text + "'";
             cmd.ExecuteNonQuery();
             Fn.Text = "";
             ln.Text = "";
@@ -205,6 +214,8 @@ namespace BBsystem
                     age.Text = dr["age"].ToString();
                     city.Text = dr["city"].ToString();
                     usertype.Text = dr["usertype"].ToString();
+                    bdtype.Text = dr["BloodType"].ToString();
+
 
                     dr.Close();
                 }
@@ -403,6 +414,11 @@ namespace BBsystem
     }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Edit_Click(object sender, EventArgs e)
         {
 
         }
