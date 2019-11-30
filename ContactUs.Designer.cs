@@ -217,7 +217,6 @@
             this.Name = "ContactUs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contact Us";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactUs_FormClosed);
             this.Load += new System.EventHandler(this.ContactUs_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseMove);

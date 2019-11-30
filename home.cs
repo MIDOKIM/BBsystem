@@ -7,7 +7,7 @@ namespace BBsystem
 {
     public partial class home : Form
     {
-        User donor ;
+        readonly User donor ;
 
         public home(User donn)
         {
@@ -27,32 +27,32 @@ namespace BBsystem
                 pictureBox8.Hide();
             else
                 pictureBox8.Show();
-            this.label4.Text = donor.fName;
+            label4.Text = donor.fName;
             switch (donor.bloodtype)
             {
                 case 0:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.ap;
+                    pictureBox2.Image = Properties.Resources.ap;
                     break;
                 case 1:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.an;
+                    pictureBox2.Image = Properties.Resources.an;
                     break;
                 case 2:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.bp;
+                    pictureBox2.Image = Properties.Resources.bp;
                     break;
                 case 3:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.bn;
+                    pictureBox2.Image = Properties.Resources.bn;
                     break;
                 case 4:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.op;
+                    pictureBox2.Image = Properties.Resources.op;
                     break;
                 case 5:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.on;
+                    pictureBox2.Image = Properties.Resources.on;
                     break;
                 case 6:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.abp;
+                    pictureBox2.Image = Properties.Resources.abp;
                     break;
                 case 7:
-                    this.pictureBox2.Image = global::BBsystem.Properties.Resources.abn;
+                    pictureBox2.Image = Properties.Resources.abn;
                     break;
             }
         }
@@ -60,7 +60,8 @@ namespace BBsystem
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Start.connection.Close();
-            Application.Exit();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -70,12 +71,8 @@ namespace BBsystem
             var buttons = MessageBoxButtons.YesNo;
             var result = MessageBox.Show(message, title, buttons);
             if (result == DialogResult.Yes)
-            {
-                donor.delete();
-                var form1 = (LogIn)Tag;
-                form1.Show();
                 Close();
-            }
+            
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -89,49 +86,40 @@ namespace BBsystem
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
 
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            var vwprfl = new ViewProfile(donor);
-            vwprfl.Tag = this;
-            vwprfl.Show(this);
-            Hide();
+            this.StartForm(new ViewProfile(donor));
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            var form2 = new ViewRequest(donor);
-            form2.Tag = this;
-            form2.Show(this);
-            Hide();
+            this.StartForm(new ViewRequest(donor));
+
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            var form2 = new ContactUs(donor);
-            form2.Tag = this;
-            form2.Show(this);
-            Hide();
+            this.StartForm(new ContactUs(donor));
+
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-            var admnpnl = new AdminPanel {Tag = this};
-            Hide();
-            admnpnl.ShowDialog(this);
-            Show();
+            this.StartForm(new AdminPanel());
+
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            var vwdon = new ViewDonations(donor) {Tag = this};
-            vwdon.Show(this);
-            Hide();
+            this.StartForm(new ViewDonations(donor));
+
         }
     }
 }

@@ -9,7 +9,6 @@ namespace BBsystem
 {
     public partial class ContactUs : Form
     {
-        SqlCommand cmd;
         public ContactUs()
         {
             InitializeComponent();
@@ -35,17 +34,14 @@ namespace BBsystem
         }
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-
-            var form1 = (Start)Tag;
-            form1.Show();
             Close();
         }
         private void Form2_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
         Point lastPoint;
@@ -53,17 +49,13 @@ namespace BBsystem
         {
             lastPoint = new Point(e.X, e.Y);
         }
-        private void ContactUs_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Start.connection.Close();
-        }
-
+       
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             if (CheckValid())
             {
 
-                cmd = new SqlCommand("insert into [ContactMSG](fName,email,[message],subject,recivedate)  values('" + textBox1.Text + "','" + textBox2.Text + "','" + richTextBox1.Text + "','" + textBox3.Text + "',getdate())", Start.connection);
+                var cmd = new SqlCommand("insert into [ContactMSG](fName,email,[message],subject,recivedate)  values('" + textBox1.Text + "','" + textBox2.Text + "','" + richTextBox1.Text + "','" + textBox3.Text + "',getdate())", Start.connection);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Message sent successfully");
             }
@@ -73,8 +65,6 @@ namespace BBsystem
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            var form1 = (home)Tag;
-            form1.Show();
             Close();
         }
 

@@ -207,7 +207,6 @@
             this.Name = "LogIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LogIn_FormClosed);
             this.Load += new System.EventHandler(this.Form7_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogIn_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form7_MouseDown);

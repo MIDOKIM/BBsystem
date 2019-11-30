@@ -19,13 +19,12 @@ namespace BBsystem
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Start.connection.Close();
-            Application.Exit();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            var start = (home)Tag;
-            start.Show();
             Close();
         }
 

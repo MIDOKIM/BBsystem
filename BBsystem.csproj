@@ -52,6 +52,7 @@
     <Compile Include="AdminPanel.designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="ViewProfile.cs">
       <SubType>Form</SubType>
     </Compile>

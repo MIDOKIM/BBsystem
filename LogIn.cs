@@ -5,10 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace BBsystem
-{
-    
-    //by youngo
-    
+{    
     public partial class LogIn : Form
     {
         private readonly User donor;
@@ -30,13 +27,12 @@ namespace BBsystem
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Start.connection.Close();
-            Application.Exit();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            var start = (Start)Tag;
-            start.Show();
+        {      
             Close();
         }
 
@@ -44,8 +40,8 @@ namespace BBsystem
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
         Point lastPoint;
@@ -56,10 +52,7 @@ namespace BBsystem
         }
 
 
-        private void LogIn_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Start.connection.Close();
-        }
+       
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -103,12 +96,10 @@ namespace BBsystem
 
 
             var form5 = new home(donor);
-            form5.Tag = this;
             textBox1.Text = null;
             textBox2.Text = null;
             textBox1.Focus();
-            form5.Show(this);
-            Hide();
+            this.StartForm(form5);
         }
 
         private void LogIn_KeyDown(object sender, KeyEventArgs e)

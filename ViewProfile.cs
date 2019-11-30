@@ -98,14 +98,12 @@ namespace BBsystem
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Start.connection.Close();
-            Application.Exit();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            var start = (home)Tag;
-            start.Show();
-            start.home_Load(sender, e);
             Close();
         }
 
@@ -113,8 +111,8 @@ namespace BBsystem
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
         Point lastPoint;

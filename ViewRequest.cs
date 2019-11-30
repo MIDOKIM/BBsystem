@@ -8,7 +8,7 @@ namespace BBsystem
 {
     public partial class ViewRequest : Form
     {
-        User donor;
+        readonly User donor;
         public ViewRequest(User don)
         {
             InitializeComponent();
@@ -30,26 +30,26 @@ namespace BBsystem
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            var home = (home)Tag;
-            home.Show();
             Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Start.connection.Close();
-            Application.Exit();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void ViewRequest_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
-        Point lastPoint;
+
+        private Point lastPoint;
 
         private void ViewRequest_MouseDown(object sender, MouseEventArgs e)
         {

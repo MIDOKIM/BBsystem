@@ -13,8 +13,6 @@ namespace BBsystem
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            var form1 = (Start)Tag;
-            form1.Show();
             Close();
         }
 
@@ -22,8 +20,8 @@ namespace BBsystem
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                Left += e.X - lastPoint.X;
+                Top += e.Y - lastPoint.Y;
             }
         }
         Point lastPoint;
