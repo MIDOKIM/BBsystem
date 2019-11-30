@@ -119,6 +119,14 @@ namespace BBsystem
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+                textBox2.PasswordChar = '*';
+            else
+                textBox2.PasswordChar = '\0';
+
+        }
     }
     public class User
     {

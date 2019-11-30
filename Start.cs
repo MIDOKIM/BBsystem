@@ -14,8 +14,8 @@ namespace BBsystem
         public Start()
         {
           InitializeComponent();
-            //connection = new SqlConnection(@"Data Source=MIDOKIM-PC\MKK;Initial Catalog=BloodBankDB;Integrated Security=True"); //kandil
-            connection = new SqlConnection(@"Data Source=HP;Initial Catalog=BloodBankDB;Integrated Security=True"); //young
+            connection = new SqlConnection(@"Data Source=MIDOKIM-PC\MKK;Initial Catalog=BloodBankDB;Integrated Security=True"); //kandil
+            //connection = new SqlConnection(@"Data Source=HP;Initial Catalog=BloodBankDB;Integrated Security=True"); //young
 
         }
 
