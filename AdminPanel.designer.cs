@@ -65,11 +65,13 @@
             this.search = new System.Windows.Forms.Button();
             this.usertxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbgndr = new System.Windows.Forms.ComboBox();
+            this.gndr = new System.Windows.Forms.Label();
+            this.remove = new System.Windows.Forms.Button();
             this.bdtype = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.usertype = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.remove = new System.Windows.Forms.Button();
             this.update = new System.Windows.Forms.Button();
             this.city = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -117,8 +119,6 @@
             this.cbsearch = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label29 = new System.Windows.Forms.Label();
-            this.cbgndr = new System.Windows.Forms.ComboBox();
-            this.gndr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -577,6 +577,39 @@
             this.panel1.Size = new System.Drawing.Size(295, 302);
             this.panel1.TabIndex = 77;
             // 
+            // cbgndr
+            // 
+            this.cbgndr.FormattingEnabled = true;
+            this.cbgndr.Items.AddRange(new object[] {
+            "m",
+            "f"});
+            this.cbgndr.Location = new System.Drawing.Point(114, 264);
+            this.cbgndr.Margin = new System.Windows.Forms.Padding(2);
+            this.cbgndr.Name = "cbgndr";
+            this.cbgndr.Size = new System.Drawing.Size(38, 21);
+            this.cbgndr.TabIndex = 76;
+            // 
+            // gndr
+            // 
+            this.gndr.AutoSize = true;
+            this.gndr.Location = new System.Drawing.Point(41, 264);
+            this.gndr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.gndr.Name = "gndr";
+            this.gndr.Size = new System.Drawing.Size(43, 13);
+            this.gndr.TabIndex = 75;
+            this.gndr.Text = "gender:";
+            // 
+            // remove
+            // 
+            this.remove.Location = new System.Drawing.Point(216, 264);
+            this.remove.Margin = new System.Windows.Forms.Padding(2);
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(64, 24);
+            this.remove.TabIndex = 72;
+            this.remove.Text = "remove";
+            this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
+            // 
             // bdtype
             // 
             this.bdtype.FormattingEnabled = true;
@@ -627,17 +660,6 @@
             this.label13.Size = new System.Drawing.Size(55, 13);
             this.label13.TabIndex = 68;
             this.label13.Text = "User type:";
-            // 
-            // remove
-            // 
-            this.remove.Location = new System.Drawing.Point(216, 264);
-            this.remove.Margin = new System.Windows.Forms.Padding(2);
-            this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(64, 24);
-            this.remove.TabIndex = 72;
-            this.remove.Text = "remove";
-            this.remove.UseVisualStyleBackColor = true;
-            this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
             // update
             // 
@@ -941,7 +963,7 @@
             this.button6.Location = new System.Drawing.Point(185, 282);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(56, 19);
+            this.button6.Size = new System.Drawing.Size(56, 26);
             this.button6.TabIndex = 120;
             this.button6.Text = "Update";
             this.button6.UseVisualStyleBackColor = true;
@@ -1141,28 +1163,6 @@
             this.label29.Size = new System.Drawing.Size(112, 13);
             this.label29.TabIndex = 112;
             this.label29.Text = "Choose Sybject Name";
-            // 
-            // cbgndr
-            // 
-            this.cbgndr.FormattingEnabled = true;
-            this.cbgndr.Items.AddRange(new object[] {
-            "m",
-            "f"});
-            this.cbgndr.Location = new System.Drawing.Point(114, 264);
-            this.cbgndr.Margin = new System.Windows.Forms.Padding(2);
-            this.cbgndr.Name = "cbgndr";
-            this.cbgndr.Size = new System.Drawing.Size(38, 21);
-            this.cbgndr.TabIndex = 76;
-            // 
-            // gndr
-            // 
-            this.gndr.AutoSize = true;
-            this.gndr.Location = new System.Drawing.Point(41, 264);
-            this.gndr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.gndr.Name = "gndr";
-            this.gndr.Size = new System.Drawing.Size(43, 13);
-            this.gndr.TabIndex = 75;
-            this.gndr.Text = "gender:";
             // 
             // AdminPanel
             // 

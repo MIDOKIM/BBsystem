@@ -262,7 +262,8 @@ namespace BBsystem
             {    MessageBox.Show("Request Not Found");
             return; 
             }
-            var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);
+            var dadapter = new SqlDataAdapter("select* from FNview("+int.Parse(Id.Text)+")", Start.connection);
+
             var t = new DataTable();
             dadapter.Fill(t);
             if (t.Rows.Count == 0)
@@ -310,17 +311,7 @@ namespace BBsystem
                 return;
             var cmd = Start.connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update DonationRequest set completed='" + cbcom.Text + "' WHERE requestId=" + int.Parse(Id.Text);
-            cmd.ExecuteNonQuery();
-            if (cbcom.SelectedItem.ToString() == "1")
-            {
-                cmd.CommandText = "update DonationRequest  set donatedate=GETDATE() WHERE requestId=" + int.Parse(Id.Text);
-            }
-            else if (cbcom.SelectedItem.ToString() == "0")
-            {
-                cmd.CommandText = "update DonationRequest  set donatedate=NULL WHERE requestId=" + int.Parse(Id.Text);
-            }
-
+                cmd.CommandText = "EXEC p_update  @request_id=" + int.Parse(Id.Text) + ",@complete=" + cbcom.Text;
             cmd.ExecuteNonQuery();
 
             cbcom.Text = "";
@@ -453,5 +444,6 @@ namespace BBsystem
         {
 
         }
+
     }
 }
