@@ -20,7 +20,7 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            var command = new SqlCommand("select requestID,donorId,bloodtype,requestdate,donatedate from DonationRequest where donorid=" + donor.userid+" order by donatedate desc", Start.connection);
+            var command = new SqlCommand("SELECT* FROM DisplayRequest("+ donor.userid + ") order by donatedate desc", Start.connection);
             var reader = new SqlDataAdapter(command);
             var filldata = new DataTable();
             reader.Fill(filldata);
@@ -54,22 +54,21 @@ namespace BBsystem
         private void ViewRequest_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var command = new SqlCommand("SELECT * FROM DonationRequest where donorid = " + donor.userid + " AND completed=0", Start.connection);
-            if (command.ExecuteScalar() != null)
+            var command = new SqlCommand($"SELECT dbo.[RequestExist] ({donor.userid})", Start.connection);
+            var x = Convert.ToInt32(command.ExecuteScalar());
+            if (x!=0)
             {
                 MessageBox.Show("You Already Have A Pending Donate Request");
             }
             else 
             {
-                command =new SqlCommand("insert into DonationRequest values("+ donor.userid +" ," + donor.bloodtype+ ",GETDATE(),0,null)", Start.connection);
+                command =new SqlCommand("exec InsertDonateRequest " + donor.userid + ", " + donor.bloodtype + "", Start.connection);
                 command.ExecuteNonQuery();
                 MessageBox.Show("Request Added Successfuly");
-
             }
             ViewRequest_Load(sender, e);
         }

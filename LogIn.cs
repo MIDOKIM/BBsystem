@@ -52,7 +52,7 @@ namespace BBsystem
         }
 
 
-       
+
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -60,15 +60,14 @@ namespace BBsystem
             {
                 Start.connection.Open();
             }
-            var query = "select count(*)from [user] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
+            var query = $"SELECT dbo.[MailExist]('{textBox1.Text}','{textBox2.Text}')";
             var command = new SqlCommand(query, Start.connection);
             var x = Convert.ToInt32(command.ExecuteScalar());
             if (x == 0) {
-                MessageBox.Show("wrong email or password");
+                MessageBox.Show("Wrong Username Or Password");
                 textBox1.Focus();
                 return;
             }
-
             query = "select * from [User] where username='" + textBox1.Text + "'and password='" + textBox2.Text + "'";
             command = new SqlCommand(query, Start.connection);
             var reader = command.ExecuteReader();

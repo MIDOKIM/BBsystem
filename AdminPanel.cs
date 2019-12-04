@@ -259,7 +259,7 @@ namespace BBsystem
         {
 
             if (Id.Text == "")
-            {    MessageBox.Show("Enter Valid Request ID");
+            {    MessageBox.Show("Request Not Found");
             return; 
             }
             var dadapter = new SqlDataAdapter("Select requestId from [DonationRequest] where requestId=" + int.Parse(Id.Text), Start.connection);

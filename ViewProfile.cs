@@ -43,20 +43,12 @@ namespace BBsystem
                 textBox.ReadOnly = true;
             comboBox1.Enabled = false;
 
-            var cmd = new SqlCommand("SELECT * FROM [USER] where userid="+donor.userid, Start.connection);
+            var cmd = new SqlCommand("SELECT * FROM [USER] where userid=" + donor.userid, Start.connection);
             var reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                textBox1.Text = donor.fName;
-                textBox8.Text = donor.lName;
-                textBox2.Text = donor.phone;
-                comboBox1.Text= donor.city;
-                textBox7.Text = donor.age.ToString();
-                textBox4.Text = donor.email;
-                textBox10.Text = donor.username;
-                textBox9.Text = donor.password;
-                       
+                filldata();
             }
             reader.Close();
         }
@@ -68,7 +60,7 @@ namespace BBsystem
             button3.Visible = true;
             textBox6.ReadOnly = false;
             textBox6.Focus();
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,14 +76,7 @@ namespace BBsystem
             var reader = cmd.ExecuteReader();
             reader.Close();
             MessageBox.Show("Info Saved");
-            donor.fName= textBox1.Text;
-             donor.lName= textBox8.Text;
-            donor.phone = textBox2.Text;
-             donor.city= comboBox1.Text;
-             donor.age = Convert.ToInt32(textBox7.Text);
-            donor.email= textBox4.Text;
-            donor.username= textBox10.Text;
-            donor.password=textBox9.Text ;
+            updateuser();
             Form1_Load(sender, e);
         }
 
@@ -135,7 +120,7 @@ namespace BBsystem
             }
             else
                 MessageBox.Show("Incorrect Password Please Try Again");
-                return;
+            return;
         }
         private bool checK()
         {
@@ -192,8 +177,31 @@ namespace BBsystem
                 comboBox1.Focus();
                 return false;
             }
-           
+
             return true;
+        }
+        private void filldata()
+        {
+            textBox1.Text = donor.fName;
+            textBox8.Text = donor.lName;
+            textBox2.Text = donor.phone;
+            comboBox1.Text = donor.city;
+            textBox7.Text = donor.age.ToString();
+            textBox4.Text = donor.email;
+            textBox10.Text = donor.username;
+            textBox9.Text = donor.password;
+        }
+        private void updateuser()
+
+        {
+            donor.fName= textBox1.Text;
+             donor.lName= textBox8.Text;
+            donor.phone = textBox2.Text;
+             donor.city= comboBox1.Text;
+             donor.age = Convert.ToInt32(textBox7.Text);
+            donor.email= textBox4.Text;
+            donor.username= textBox10.Text;
+            donor.password=textBox9.Text ;
         }
     }
 }

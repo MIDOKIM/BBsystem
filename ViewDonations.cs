@@ -28,10 +28,10 @@ namespace BBsystem
         {
             string command=null;
             if (donor.usertype == 2)
-                 command = $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID  WHERE completed=1 order by donatedate desc";
+                 command = $"SELECT * FROM [dbo].[DisplatDonateRequest] (1) order by [Donate Date] desc";
 
             else if(donor.usertype==3)
-                 command = $"SELECT D.requestID, B.BloodName,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID  order by donatedate desc";
+                 command = $"SELECT * FROM [dbo].[DisplatDonateRequest] (0) order by [Donate Date] desc";
 
             using (var cmd = new SqlCommand(command, Start.connection))
             {
@@ -77,13 +77,13 @@ namespace BBsystem
         {
             if (comboBox1.SelectedIndex == -1)
                 return;
-            var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
+            //var BloodType = Convert.ToInt32(Enum.Parse(typeof(bloodtype), comboBox1.Text.Replace("+", "Positive").Replace("-", "Negative")));
             string command = null;
             if (donor.usertype == 3)
 
-               command= $"SELECT D.requestID,B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID WHERE D.bloodtype = {BloodType} order by donatedate desc";
+               command= $"SELECT * FROM [dbo].[DisplatDonateRequest] (0) where BloodType='{comboBox1.Text}' order by [Donate Date] asc ";
             if (donor.usertype == 2)
-                command = $"SELECT B.BloodName BloodType,U.gender,U.age,U.city,D.donatedate FROM DonationRequest as D INNER JOIN[User] as U ON U.userID = D.donorid INNER JOIN bloodID as B ON D.bloodtype = B.bloodTypeID WHERE D.bloodtype = {BloodType}  AND completed=1 order by donatedate desc";
+                command = $"SELECT * FROM [dbo].[DisplatDonateRequest] (1) where BloodType='{comboBox1.Text}' order by [Donate Date] asc ";
 
             using (var cmd = new SqlCommand(command, Start.connection))
             {
