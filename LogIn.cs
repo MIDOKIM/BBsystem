@@ -88,9 +88,7 @@ namespace BBsystem
 
             }
             reader.Close();
-            if(donor.usertype!=3)
-                MessageBox.Show("welcome Back "+donor.fName);
-            else
+            if(donor.usertype==3)
                 MessageBox.Show("welcome Back Admin");
             donor.fName = char.ToUpper(donor.fName[0]) + donor.fName.Substring(1);
 

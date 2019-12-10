@@ -45,7 +45,7 @@
             // 
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Image = global::BBsystem.Properties.Resources._227_2271557_back_button_png_both_side_arrow_png;
-            this.pictureBox4.Location = new System.Drawing.Point(632, 12);
+            this.pictureBox4.Location = new System.Drawing.Point(674, 12);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(29, 26);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -58,9 +58,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label2.Location = new System.Drawing.Point(552, 25);
+            this.label2.Location = new System.Drawing.Point(580, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 24);
+            this.label2.Size = new System.Drawing.Size(123, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "About App";
             // 
@@ -71,7 +71,7 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(12, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(273, 44);
+            this.label1.Size = new System.Drawing.Size(315, 50);
             this.label1.TabIndex = 0;
             this.label1.Text = "FCIS Blood Bank";
             // 
@@ -81,9 +81,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 328);
+            this.panel1.Location = new System.Drawing.Point(0, 340);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(673, 58);
+            this.panel1.Size = new System.Drawing.Size(715, 58);
             this.panel1.TabIndex = 13;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox4_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox4_MouseMove);
@@ -94,7 +94,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(614, 310);
+            this.panel2.Size = new System.Drawing.Size(656, 322);
             this.panel2.TabIndex = 14;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox4_MouseDown);
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox4_MouseMove);
@@ -103,9 +103,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe Print", 12F);
-            this.label4.Location = new System.Drawing.Point(152, 82);
+            this.label4.Location = new System.Drawing.Point(182, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 168);
+            this.label4.Size = new System.Drawing.Size(350, 198);
             this.label4.TabIndex = 1;
             this.label4.Text = "Mahmoud Kamal Kandil\r\nMahmoud Mostafa Helmy\r\nMahmoud Youssef Rashad\r\nMuhammed Sam" +
     "er Abd El-Khaliq\r\nYoussef Gamal Abd El-Nasser\r\nFarah Ahmed Yousry Shams Eldin\r\n";
@@ -116,7 +116,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(313, 108);
+            this.label3.Size = new System.Drawing.Size(375, 129);
             this.label3.TabIndex = 0;
             this.label3.Text = "Information System Project\r\nBlood Donation System\r\nDesigned By:";
             // 
@@ -125,7 +125,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(673, 386);
+            this.ClientSize = new System.Drawing.Size(715, 398);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox4);

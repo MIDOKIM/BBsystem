@@ -52,10 +52,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label1.Location = new System.Drawing.Point(14, 65);
+            this.label1.Location = new System.Drawing.Point(3, 58);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 36);
+            this.label1.Size = new System.Drawing.Size(156, 43);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username ";
             // 
@@ -63,10 +63,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 15.75F);
-            this.label2.Location = new System.Drawing.Point(11, 145);
+            this.label2.Location = new System.Drawing.Point(3, 145);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 36);
+            this.label2.Size = new System.Drawing.Size(140, 43);
             this.label2.TabIndex = 0;
             this.label2.Text = "Password";
             // 
@@ -76,7 +76,7 @@
             this.textBox1.Location = new System.Drawing.Point(11, 103);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(193, 36);
+            this.textBox1.Size = new System.Drawing.Size(193, 40);
             this.textBox1.TabIndex = 1;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogIn_KeyDown);
             // 
@@ -87,7 +87,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(193, 36);
+            this.textBox2.Size = new System.Drawing.Size(193, 40);
             this.textBox2.TabIndex = 2;
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogIn_KeyDown);
             // 
@@ -109,9 +109,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label4.Location = new System.Drawing.Point(599, 25);
+            this.label4.Location = new System.Drawing.Point(591, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 24);
+            this.label4.Size = new System.Drawing.Size(70, 26);
             this.label4.TabIndex = 1;
             this.label4.Text = "Login";
             // 
@@ -122,7 +122,7 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(12, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(273, 44);
+            this.label5.Size = new System.Drawing.Size(315, 50);
             this.label5.TabIndex = 0;
             this.label5.Text = "FCIS Blood Bank";
             // 
@@ -180,7 +180,7 @@
             this.checkBox1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.Location = new System.Drawing.Point(100, 224);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(112, 23);
+            this.checkBox1.Size = new System.Drawing.Size(128, 27);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "View Password";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -192,16 +192,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(673, 386);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);

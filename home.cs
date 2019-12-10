@@ -28,7 +28,6 @@ namespace BBsystem
                 pictureBox8.Hide();
             else
                 pictureBox8.Show();
-            label4.Text = donor.fName;
             switch (donor.bloodtype)
             {
                 case 0:
@@ -56,11 +55,19 @@ namespace BBsystem
                     pictureBox2.Image = Properties.Resources.abn;
                     break;
             }
+                label13.Text = "Welcome Back,";
+            label4.Text = donor.fName+" "+donor.lName;
+
+            loadDonors();
+        }
+
+        private void loadDonors()
+        {
             SqlCommand load = new SqlCommand("select count(*) from DonationRequest where bloodtype=0 and completed=1", Start.connection);
             label5.Text = Convert.ToString(load.ExecuteScalar());
-             load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=1 and completed =1", Start.connection);
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=1 and completed =1", Start.connection);
             label6.Text = Convert.ToString(load.ExecuteScalar());
-             load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=2 and completed =1", Start.connection);
+            load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=2 and completed =1", Start.connection);
             label7.Text = Convert.ToString(load.ExecuteScalar());
             load = new SqlCommand("select count(*) from [DonationRequest] where bloodtype=3 and completed =1", Start.connection);
             label8.Text = Convert.ToString(load.ExecuteScalar());

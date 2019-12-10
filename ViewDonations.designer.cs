@@ -53,6 +53,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(11, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 47;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.Size = new System.Drawing.Size(776, 367);
             this.dataGridView1.TabIndex = 0;
@@ -60,10 +61,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Segoe Print", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 19);
+            this.label1.Size = new System.Drawing.Size(131, 38);
             this.label1.TabIndex = 2;
             this.label1.Text = "BloodType";
             // 
@@ -87,7 +88,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.label2.Location = new System.Drawing.Point(567, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 24);
+            this.label2.Size = new System.Drawing.Size(260, 26);
             this.label2.TabIndex = 1;
             this.label2.Text = "View donation requests";
             // 
@@ -98,7 +99,7 @@
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(12, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(273, 44);
+            this.label3.Size = new System.Drawing.Size(315, 50);
             this.label3.TabIndex = 0;
             this.label3.Text = "FCIS Blood Bank";
             // 
@@ -140,18 +141,18 @@
             "O-",
             "AB+",
             "AB-"});
-            this.comboBox1.Location = new System.Drawing.Point(84, 6);
+            this.comboBox1.Location = new System.Drawing.Point(137, 6);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
+            this.comboBox1.Size = new System.Drawing.Size(121, 31);
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(211, 6);
+            this.button1.Location = new System.Drawing.Point(264, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 29);
+            this.button1.Size = new System.Drawing.Size(107, 31);
             this.button1.TabIndex = 11;
             this.button1.Text = "Display All";
             this.button1.UseVisualStyleBackColor = true;
